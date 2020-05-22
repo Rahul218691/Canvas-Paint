@@ -49,3 +49,29 @@ ctx.fillStyle = "red";
 ctx.textAlign = "center";
 ctx.fillText("Hello World", canvas.width/2, canvas.height/2);
 });
+
+  var callDownload = function () {
+        download(paint, 'myPicture.png');
+    };
+   
+    document.getElementById("id_download").addEventListener("click", callDownload);
+   
+    function download(canvas, filename) {
+
+        var lnk = document.createElement('a'),
+            e;
+        lnk.download = filename;
+
+        lnk.href = canvas.toDataURL();
+
+        if (document.createEvent) {
+
+            e = new MouseEvent("click", {});
+
+            lnk.dispatchEvent(e);
+
+        } else if (lnk.fireEvent) {
+
+            lnk.fireEvent("onclick");
+        }
+    }
